@@ -10,7 +10,15 @@ ENTRY = (
     "standing here in the dark, pretending the light inside me is a nightlight"
 )
 
+# Competition gate (RULES.txt): entry must be 1 to 140 characters.
+MAX_ENTRY_CHARS = 140
+
 def main() -> None:
+    if not 1 <= len(ENTRY) <= MAX_ENTRY_CHARS:
+        raise ValueError(
+            f"ENTRY is {len(ENTRY)} characters; must be 1 to "
+            f"{MAX_ENTRY_CHARS} characters"
+        )
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8", newline="") as f:
         f.write(ENTRY)
